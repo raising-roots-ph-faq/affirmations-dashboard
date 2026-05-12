@@ -1,2 +1,2 @@
-# philippines-faqs
-FAQ page for Raising Roots Abroad viewers moving to the Philippines.
+# Affirmations in the voice of Florence Scovel Shinn
+Made for the Acki Nacki Community
