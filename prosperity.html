@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prosperity • Florence Scovel Shinn Affirmations</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --card: #1a2332;
+      --text: #e8eef7;
+      --muted: #9fb0c7;
+      --gold: #d4af37;
+      --gold-soft: #f0d78c;
+      --accent: #3d8bfd;
+      --success: #4ade80;
+      --border: rgba(212, 175, 55, 0.25);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(ellipse at top, #1a2740 0%, #0f1419 70%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      padding: 1.5rem;
+    }
+
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding-top: 1rem;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.3rem;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .date {
+      margin-top: 0.6rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* Progress */
+    .progress-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .progress-info {
+      font-size: 0.95rem;
+    }
+
+    .progress-info strong {
+      color: var(--gold-soft);
+    }
+
+    .progress-bar {
+      flex: 1;
+      min-width: 140px;
+      height: 8px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+      border-radius: 99px;
+      transition: width 0.4s ease;
+    }
+
+    /* Affirmation cards */
+    .affirmations {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.35rem 1.5rem;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .card.spoken {
+      border-color: rgba(74, 222, 128, 0.4);
+      background: linear-gradient(135deg, rgba(74, 222, 128, 0.08), var(--card));
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .number {
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .actions {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    button.icon-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--muted);
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+
+    button.icon-btn:hover {
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--gold-soft);
+      border-color: var(--border);
+    }
+
+    .affirmation-text {
+      font-size: 1.08rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+      line-height: 1.55;
+    }
+
+    .mark-btn {
+      background: transparent;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      color: var(--gold-soft);
+      padding: 0.45rem 1rem;
+      border-radius: 99px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .mark-btn:hover {
+      background: rgba(212, 175, 55, 0.12);
+    }
+
+    .card.spoken .mark-btn {
+      background: rgba(74, 222, 128, 0.15);
+      border-color: rgba(74, 222, 128, 0.4);
+      color: var(--success);
+    }
+
+    /* Personalization */
+    .personalize {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .personalize h2 {
+      font-size: 1.15rem;
+      color: var(--gold-soft);
+      margin-bottom: 0.4rem;
+    }
+
+    .personalize p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 1rem;
+      color: var(--text);
+      font-size: 1rem;
+      resize: vertical;
+      margin-bottom: 1rem;
+      font-family: inherit;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.6rem 1.25rem;
+      border-radius: 99px;
+      border: none;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), #b8962e);
+      color: #1a1408;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.1);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--muted);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold-soft);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--gold-soft);
+      padding: 0.75rem 1.5rem;
+      border-radius: 99px;
+      font-size: 0.9rem;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-top: 1rem;
+      padding-bottom: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1rem; }
+      .card { padding: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="eyebrow">✧ Florence Scovel Shinn ✧</div>
+      <h1>Prosperity</h1>
+      <div class="subtitle">The Word Is Your Wand</div>
+      <div class="date" id="currentDate"></div>
+    </header>
+
+    <!-- Progress -->
+    <div class="progress-card">
+      <div class="progress-info">
+        Progress Today: <strong id="progressText">0% • 0 of 12 Spoken</strong>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <!-- Affirmations -->
+    <div class="affirmations" id="affirmationsList"></div>
+
+    <!-- Personalization -->
+    <div class="personalize">
+      <h2>✦ Craft Your Prosperity Formula</h2>
+      <p>Select an affirmation above or type your own. Shinn taught that phrasing your desire as already finished brings direct, sudden manifestation.</p>
+      <textarea id="personalText" placeholder="I now draw from the abundance of the spheres..."></textarea>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="copyPersonal()">Copy Personal Version</button>
+        <button class="btn btn-ghost" onclick="resetPersonal()">Reset Area</button>
+      </div>
+    </div>
+
+    <footer>
+      Inspired by Florence Scovel Shinn • Your Word is Your Wand
+    </footer>
+  </div>
+
+  <div class="toast" id="toast">Copied to clipboard</div>
+
+  <script>
+    const affirmations = [
+      "God is my unfailing supply, and large sums of money come to me quickly, under grace, in perfect ways.",
+      "I now draw from the abundance of the spheres my immediate and endless supply. All channels are free! All doors are open!",
+      "I now release the gold-mine within me. I am linked with an endless golden stream of prosperity which comes to me under grace in perfect ways.",
+      "Goodness and mercy shall follow me all the days of my life and I shall dwell in the house of abundance forever.",
+      "My God is a God of plenty and I now receive all that I desire or require, and more.",
+      "All that is mine by Divine Right is now released and reaches me in great avalanches of abundance, under grace in miraculous ways.",
+      "My supply is endless, inexhaustible and immediate and comes to me under grace in perfect ways.",
+      "All channels are free and all doors fly open for my immediate and endless, Divinely Designed supply. My ships come in over a calm sea, under grace in perfect ways.",
+      "I give thanks that the millions which are mine by Divine Right, now pour in and pile up under grace in perfect ways.",
+      "Unexpected doors fly open, unexpected channels are free, and endless avalanches of abundance are poured out upon me, under grace in perfect ways.",
+      "I spend money under direct inspiration wisely and fearlessly, knowing my supply is endless and immediate.",
+      "I am fearless in letting money go out, knowing God is my immediate and endless supply."
+    ];
+
+    // Daily key so progress resets every day
+    const todayKey = new Date().toDateString();
+    let spoken = JSON.parse(localStorage.getItem('prosperitySpoken') || '{}');
+
+    // Reset if new day
+    if (spoken.date !== todayKey) {
+      spoken = { date: todayKey, ids: [] };
+      localStorage.setItem('prosperitySpoken', JSON.stringify(spoken));
+    }
+
+    // Render date
+    document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    });
+
+    function render() {
+      const list = document.getElementById('affirmationsList');
+      list.innerHTML = '';
+
+      affirmations.forEach((text, i) => {
+        const isSpoken = spoken.ids.includes(i);
+        const card = document.createElement('div');
+        card.className = `card ${isSpoken ? 'spoken' : ''}`;
+        card.innerHTML = `
+          <div class="card-header">
+            <span class="number">✦ ${String(i + 1).padStart(2, '0')}</span>
+            <div class="actions">
+              <button class="icon-btn" onclick="speak(${i})" title="Speak">🔊</button>
+              <button class="icon-btn" onclick="copyText(${i})" title="Copy">⎘</button>
+            </div>
+          </div>
+          <div class="affirmation-text">${text}</div>
+          <button class="mark-btn" onclick="toggleSpoken(${i})">
+            ${isSpoken ? '✓ Spoken' : 'Mark as Spoken'}
+          </button>
+        `;
+        list.appendChild(card);
+      });
+
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const count = spoken.ids.length;
+      const percent = Math.round((count / affirmations.length) * 100);
+      document.getElementById('progressText').textContent = `${percent}% • ${count} of ${affirmations.length} Spoken`;
+      document.getElementById('progressFill').style.width = percent + '%';
+    }
+
+    function toggleSpoken(i) {
+      if (spoken.ids.includes(i)) {
+        spoken.ids = spoken.ids.filter(id => id !== i);
+      } else {
+        spoken.ids.push(i);
+      }
+      localStorage.setItem('prosperitySpoken', JSON.stringify(spoken));
+      render();
+    }
+
+    function speak(i) {
+      const utterance = new SpeechSynthesisUtterance(affirmations[i]);
+      utterance.rate = 0.9;
+      utterance.pitch = 1;
+      speechSynthesis.cancel();
+      speechSynthesis.speak(utterance);
+    }
+
+    function copyText(i) {
+      navigator.clipboard.writeText(affirmations[i]).then(() => showToast());
+    }
+
+    function copyPersonal() {
+      const text = document.getElementById('personalText').value.trim();
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => showToast());
+    }
+
+    function resetPersonal() {
+      document.getElementById('personalText').value = '';
+    }
+
+    function showToast() {
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1800);
+    }
+
+    // Make cards clickable to fill personal area
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('affirmation-text')) {
+        document.getElementById('personalText').value = e.target.textContent;
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>
